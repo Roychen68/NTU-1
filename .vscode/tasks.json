@@ -1,0 +1,80 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build cumulative_sum",
+            "type": "process",
+            "command": "c++",
+            "args": [
+                "-std=c++11",
+                "-O2",
+                "-Wall",
+                "-Wextra",
+                "-Wpedantic",
+                "${workspaceFolder}/main.cpp",
+                "-o",
+                "${workspaceFolder}/cumulative_sum"
+            ],
+            "windows": {
+                "command": "g++",
+                "args": [
+                    "-std=c++11",
+                    "-O2",
+                    "-Wall",
+                    "-Wextra",
+                    "-Wpedantic",
+                    "${workspaceFolder}/main.cpp",
+                    "-o",
+                    "${workspaceFolder}/cumulative_sum.exe"
+                ]
+            },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"],
+            "group": { "kind": "build", "isDefault": true }
+        },
+        {
+            "label": "Run cumulative_sum",
+            "type": "process",
+            "command": "${workspaceFolder}/cumulative_sum",
+            "windows": { "command": "${workspaceFolder}/cumulative_sum.exe" },
+            "dependsOn": "Build cumulative_sum",
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "presentation": { "reveal": "always", "focus": true }
+        },
+        {
+            "label": "Build C++ tests",
+            "type": "process",
+            "command": "c++",
+            "args": [
+                "-std=c++11", "-O2", "-Wall", "-Wextra", "-Wpedantic",
+                "${workspaceFolder}/tests/test_cumulative_sum.cpp",
+                "-o", "${workspaceFolder}/cumulative_sum_tests"
+            ],
+            "windows": {
+                "command": "g++",
+                "args": [
+                    "-std=c++11", "-O2", "-Wall", "-Wextra", "-Wpedantic",
+                    "${workspaceFolder}/tests/test_cumulative_sum.cpp",
+                    "-o", "${workspaceFolder}/cumulative_sum_tests.exe"
+                ]
+            },
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": ["$gcc"],
+            "group": "build"
+        },
+        {
+            "label": "Run C++ tests",
+            "type": "process",
+            "command": "${workspaceFolder}/cumulative_sum_tests",
+            "windows": {
+                "command": "${workspaceFolder}/cumulative_sum_tests.exe"
+            },
+            "dependsOn": "Build C++ tests",
+            "options": { "cwd": "${workspaceFolder}" },
+            "problemMatcher": [],
+            "group": { "kind": "test", "isDefault": true },
+            "presentation": { "reveal": "always", "focus": true }
+        }
+    ]
+}

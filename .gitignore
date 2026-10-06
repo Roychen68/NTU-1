@@ -1,0 +1,9 @@
+/build/
+/cmake-build-*/
+/cumulative_sum
+/cumulative_sum.exe
+/cumulative_sum_tests
+/cumulative_sum_tests.exe
+/*.obj
+/.idea/
+.DS_Store
